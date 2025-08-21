@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FOCUS ON YOUR GOAL</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #f5f5f5;
+        }
+        .container {
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        h1 {
+            color: #333;
+            text-align: center;
+        }
+        .image-container {
+            text-align: center;
+            margin: 20px 0;
+        }
+        #demo-image {
+            max-width: 100%;
+            height: auto;
+            transition: all 0.3s ease;
+        }
+        .settings-panel {
+            background: #f9f9f9;
+            padding: 15px;
+            border-radius: 6px;
+            margin-top: 20px;
+        }
+        .setting-group {
+            margin-bottom: 15px;
+        }
+        label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+            color: #555;
+        }
+        input, select {
+            width: 100%;
+            padding: 8px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+        input[type="range"] {
+            margin: 10px 0;
+        }
+        .value-display {
+            display: inline-block;
+            margin-left: 10px;
+            font-weight: normal;
+            color: #666;
+        }
+        button {
+            background: #4CAF50;
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        button:hover {
+            background: #45a049;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1><b>FOCUS ON YOUR GOAL</b></h1>
+        
+        <div class="image-container">
+            <img id="demo-image" src="https://www.shutterstock.com/image-photo/effort-commitment-success-silhouette-woman-600nw-2394712445.jpg" alt="Demo Image">
+        </div>
+        
+        <div class="settings-panel">
+            <h2>Image Settings</h2>
+            
+            <div class="setting-group">
+                <label for="width-slider">Width: <span id="width-value" class="value-display">400px</span></label>
+                <input type="range" id="width-slider" min="100" max="800" value="400">
+            </div>
+            
+            <div class="setting-group">
+                <label for="height-slider">Height: <span id="height-value" class="value-display">300px</span></label>
+                <input type="range" id="height-slider" min="100" max="600" value="300">
+            </div>
+            
+            <div class="setting-group">
+                <label for="border-width">Border Width:</label>
+                <input type="number" id="border-width" min="0" max="20" value="0">
+            </div>
+            
+            <div class="setting-group">
+                <label for="border-color">Border Color:</label>
+                <input type="color" id="border-color" value="#000000">
+            </div>
+            
+            <div class="setting-group">
+                <label for="border-style">Border Style:</label>
+                <select id="border-style">
+                    <option value="solid">Solid</option>
+                    <option value="dashed">Dashed</option>
+                    <option value="dotted">Dotted</option>
+                    <option value="double">Double</option>
+                </select>
+            </div>
+            
+            <div class="setting-group">
+                <label for="opacity-slider">Opacity: <span id="opacity-value" class="value-display">100%</span></label>
+                <input type="range" id="opacity-slider" min="0" max="100" value="100">
+            </div>
+            
+            <div class="setting-group">
+                <label for="image-url">Image URL:</label>
+                <input type="text" id="image-url" value="https://www.shutterstock.com/image-photo/effort-commitment-success-silhouette-woman-600nw-2394712445.jpg">
+            </div>
+            
+            <button id="reset-btn">Reset to Default</button>
+        </div>
+    </div>
+
+    <script>
+        const image = document.getElementById('demo-image');
+        const widthSlider = document.getElementById('width-slider');
+        const heightSlider = document.getElementById('height-slider');
+        const borderWidth = document.getElementById('border-width');
+        const borderColor = document.getElementById('border-color');
+        const borderStyle = document.getElementById('border-style');
+        const opacitySlider = document.getElementById('opacity-slider');
+        const imageUrl = document.getElementById('image-url');
+        const resetBtn = document.getElementById('reset-btn');
+        const widthValue = document.getElementById('width-value');
+        const heightValue = document.getElementById('height-value');
+        const opacityValue = document.getElementById('opacity-value');
+        function updateImage() {
+            image.style.width = widthSlider.value + 'px';
+            image.style.height = heightSlider.value + 'px';
+            image.style.border = `${borderWidth.value}px ${borderStyle.value} ${borderColor.value}`;
+            image.style.opacity = opacitySlider.value / 100;
+            widthValue.textContent = widthSlider.value + 'px';
+            heightValue.textContent = heightSlider.value + 'px';
+            opacityValue.textContent = opacitySlider.value + '%';
+        }
+
+        function updateImageSource() {
+            image.src = imageUrl.value;
+        }
+
+        function resetToDefault() {
+            widthSlider.value = 400;
+            heightSlider.value = 300;
+            borderWidth.value = 0;
+            borderColor.value = '#000000';
+            borderStyle.value = 'solid';
+            opacitySlider.value = 100;
+            imageUrl.value = 'https://www.shutterstock.com/image-photo/effort-commitment-success-silhouette-woman-600nw-2394712445.jpg'>
+            updateImage();
+            updateImageSource();
+        }
+        widthSlider.addEventListener('input', updateImage);
+        heightSlider.addEventListener('input', updateImage);
+        borderWidth.addEventListener('input', updateImage);
+        borderColor.addEventListener('input', updateImage);
+        borderStyle.addEventListener('change', updateImage);
+        opacitySlider.addEventListener('input', updateImage);
+        imageUrl.addEventListener('input', updateImageSource);
+        resetBtn.addEventListener('click', resetToDefault);
+        updateImage();
+    </script>
+</body>
+</html>
